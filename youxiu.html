@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优秀党员事迹 - 思政案例分享平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        nav {
+            background-color: #a00;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: #800;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background-color: #800;
+            font-weight: bold;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a, .user-actions span {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .user-actions a:hover, .user-actions span:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 30px;
+            padding: 0 20px;
+        }
+       
+        .page-header {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,245,245,0.98) 100%);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(200,0,0,0.1);
+        }
+       
+        .page-header:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+        }
+       
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+       
+        .header-title {
+            color: #c00;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+            animation: fadeInDown 1s ease;
+        }
+       
+        .header-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #c00, transparent);
+            margin: 20px auto;
+            animation: expandWidth 1.5s ease-out;
+            border-radius: 3px;
+        }
+       
+        .header-description {
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+        }
+       
+        .floating-icons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+       
+        .floating-icons i {
+            color: #c00;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+       
+        .floating-icons i:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+       
+        .floating-icons i:nth-child(1) { animation-delay: 0s; }
+        .floating-icons i:nth-child(2) { animation-delay: 0.5s; }
+        .floating-icons i:nth-child(3) { animation-delay: 1s; }
+        .floating-icons i:nth-child(4) { animation-delay: 1.5s; }
+       
+        /* 动画定义 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+       
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+       
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
+       
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+       
+        /* 添加背景装饰元素 */
+        .page-header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(200,0,0,0.05);
+            border-radius: 50%;
+            z-index: 1;
+        }
+       
+        .page-header::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(200,0,0,0.05);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .party-members h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .party-members h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #c00;
+            border-radius: 3px;
+        }
+        
+        .member-card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .member-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .member-img {
+            height: 250px;
+            background-color: #f1f1f1;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-img::before {
+            content: "";
+            display: block;
+            padding-top: 75%;
+        }
+        
+        /* 第一排图片效果 - 放大、倾斜、发光 */
+        .member-card:nth-child(1):hover .member-img,
+        .member-card:nth-child(2):hover .member-img {
+            transform: scale(1.3) rotate(5deg);
+            filter: drop-shadow(0 0 10px rgba(200, 0, 0, 0.7));
+        }
+        
+        /* 第二排图片效果 - 旋转、变正方形、放大、加边框 */
+        .member-card:nth-child(3):hover .member-img,
+        .member-card:nth-child(4):hover .member-img {
+            transform: scale(1.3) rotate(360deg);
+            border-radius: 0;
+            border: 5px solid #c00;
+        }
+        
+        /* 第三排图片效果 - 先放大到2倍再缩小到1.3倍 */
+        .member-card:nth-child(5):hover .member-img,
+        .member-card:nth-child(6):hover .member-img {
+            animation: zoomInOut 1s forwards;
+        }
+        
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(2);
+            }
+            100% {
+                transform: scale(1.3);
+            }
+        }
+        
+        .member-content {
+            padding: 25px;
+        }
+        
+        .member-content h3 {
+            color: #c00;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        
+        .member-content .position {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .member-content p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #c00;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: #a00;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(200,0,0,0.2);
+        }
+        
+        /* 修改为一行两列布局 */
+        .member-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #333;
+            color: #aaa;
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        /* 登录注册模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+            transform: rotate(90deg);
+        }
+        
+        .modal h3 {
+            color: #c00;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            border-color: #c00;
+            box-shadow: 0 0 0 3px rgba(200,0,0,0.1);
+            outline: none;
+        }
+        
+        .form-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid #c00;
+            color: #c00;
+            font-weight: bold;
+        }
+        
+        .tab:hover {
+            color: #a00;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .error-message {
+            color: #c00;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            z-index: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            animation: dropdownFadeIn 0.3s ease;
+        }
+        
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .user-dropdown a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .user-dropdown a:hover {
+            background-color: #f5f5f5;
+            color: #c00;
+            padding-left: 20px;
+        }
+        
+        .user-menu:hover .user-dropdown {
+            display: block;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #c00;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        /* 响应式设计 - 在小屏幕上改为单列 */
+        @media (max-width: 768px) {
+            .member-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .header-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="youxiu.html" class="active">优秀党员事迹</a></li>
+                <li><a href="shehui.html">社会实践案例</a></li>
+                <li><a href="shipin.html">视频访谈</a></li>
+                <li><a href="xinde.html">心得体会</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+            
+            <div class="user-actions" id="userActions">
+                <a href="#" id="login-btn">登录</a>
+                <a href="#" id="register-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section class="page-header">
+            <div class="header-content">
+                <h1 class="header-title">优秀党员事迹</h1>
+                <div class="header-divider"></div>
+                <p class="header-description">这里收录了各行各业的优秀共产党员先进事迹，他们用实际行动诠释了共产党员的初心和使命，是我们学习的榜样。</p>
+                <div class="floating-icons">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-flag"></i>
+                    <i class="fas fa-medal"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        </section>
+        
+        <section class="party-members">
+            <h2>优秀党员风采</h2>
+            <div class="member-list">
+                <div class="member-card">
+                    <div class="member-img" style="background-image: url('img/photo10.jpg')"></div>
+                    <div class="member-content">
+                        <h3>谷文昌</h3>
+                        <div class="position">福建省东山县原县委书记</div>
+                        <p>谷文昌同志始终牢记党的宗旨，带领东山人民艰苦奋斗，将一座风沙肆虐的荒岛变成绿树成荫的生态海岛。他立下"不治服风沙，就让风沙把我埋掉"的誓言，带领群众植树造林，筑起30多公里长的防护林带，彻底改变了东山岛的生态环境。他廉洁奉公，一心为民...</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-img" style="background-image: url('img/photo11.jpg')"></div>
+                    <div class="member-content">
+                        <h3>黄文秀</h3>
+                        <div class="position">广西壮族自治区百色市乐业县新化镇百坭村原第一书记</div>
+                        <p>黄文秀同志研究生毕业后，放弃大城市工作机会，毅然回到家乡，投身脱贫攻坚一线。她担任百坭村第一书记期间，带领群众发展砂糖橘、杉木等特色产业，使全村贫困发生率从22.88%降至2.71%。她心系群众，驻村一年间走遍全村195户贫困户，手绘"民情地图"...</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-img" style="background-image: url('img/photo12.jpg')"></div>
+                    <div class="member-content">
+                        <h3>张富清</h3>
+                        <div class="position">原西北野战军战士、湖北省来凤县离休干部</div>
+                        <p>张富清同志在解放战争中英勇善战，荣立特等功一次、一等功三次、二等功一次，两次获评"战斗英雄"称号。1955年转业后，他主动选择到湖北省最偏远的来凤县工作，深藏功名60余年，扎根山区奉献一生。他带领群众开山修路、发展生产，始终以共产党员的标准严...</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-img" style="background-image: url('img/photo13.jpg')"></div>
+                    <div class="member-content">
+                        <h3>王继才</h3>
+                        <div class="position">江苏省灌云县开山岛民兵哨所原所长</div>
+                        <p>王继才同志与妻子王仕花32年如一日坚守开山岛，把青春年华全部献给了祖国的海防事业。他克服无水无电、孤独艰苦的恶劣环境，每天坚持升国旗、巡海岛、记日志，确保岛上安全无虞。在守岛期间，他多次拒绝走私分子的利诱威胁，用生命捍卫国家利益...</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-img" style="background-image: url('img/photo14.jpg')"></div>
+                    <div class="member-content">
+                        <h3>黄大年</h3>
+                        <div class="position">吉林大学地球探测科学与技术学院教授</div>
+                        <p>黄大年同志放弃国外优越条件毅然归国，带领科研团队在航空地球物理领域取得重大突破。他七年如一日忘我工作，突破国外技术封锁，研发多项核心仪器装备，填补国内技术空白。他培养了大批优秀人才，临终前仍心系科研进展和学生培养，用生命诠释了知...</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="member-card">
+                    <div class="member-img" style="background-image: url('img/photo15.jpg')"></div>
+                    <div class="member-content">
+                        <h3>廖俊波</h3>
+                        <div class="position">福建省南平市委常委、常务副市长，政和县原县委书记</div>
+                        <p>廖俊波同志始终牢记党的嘱托，带领政和县干部群众艰苦奋斗，实现了贫困县脱胎换骨的蜕变。他提出"能在现场就不在会场"的工作方法，3年多时间行程36万公里，推动政和县经济从全省倒数跃居全省十佳。他心系群众，首创"俊波速度"，为百姓解决实际...</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="copyright">
+            <p>思政案例分享平台 &copy; 2025 由徐明月制作</p>
+        </div>
+    </footer>
+    
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="tab-container">
+                <div class="tab active" data-tab="login">登录</div>
+                <div class="tab" data-tab="register">注册</div>
+            </div>
+            
+            <div class="tab-content active" id="login-tab">
+                <h3>用户登录</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">用户名</label>
+                        <input type="text" id="login-username" required>
+                        <div class="error-message" id="login-username-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">密码</label>
+                        <input type="password" id="login-password" required>
+                        <div class="error-message" id="login-password-error"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">登录</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="register-tab">
+                <h3>用户注册</h3>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">用户名</label>
+                        <input type="text" id="register-username" required>
+                        <div class="error-message" id="register-username-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">电子邮箱</label>
+                        <input type="email" id="register-email" required>
+                        <div class="error-message" id="register-email-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">密码</label>
+                        <input type="password" id="register-password" required>
+                        <div class="error-message" id="register-password-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">确认密码</label>
+                        <input type="password" id="register-confirm" required>
+                        <div class="error-message" id="register-confirm-error"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 从本地存储获取用户登录状态
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        // 更新用户界面
+        function updateUserUI() {
+            const userActions = document.getElementById('userActions');
+            
+            if (currentUser) {
+                userActions.innerHTML = `
+                    <div class="user-menu">
+                        <span id="username-display">${currentUser.username}</span>
+                        <div class="user-dropdown">
+                            <a href="personal.html">个人中心</a>
+                            <a href="#">我的收藏</a>
+                            <a href="#">我的投稿</a>
+                            <a href="#" id="logout-btn">退出登录</a>
+                        </div>
+                    </div>
+                `;
+                
+                // 添加退出登录事件
+                document.getElementById('logout-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    updateUserUI();
+                });
+            } else {
+                userActions.innerHTML = `
+                    <a href="#" id="login-btn">登录</a>
+                    <a href="#" id="register-btn">注册</a>
+                `;
+                
+                // 重新绑定事件
+                document.getElementById('login-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('login-modal').style.display = 'flex';
+                    document.querySelector('.tab[data-tab="login"]').click();
+                });
+                
+                document.getElementById('register-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('login-modal').style.display = 'flex';
+                    document.querySelector('.tab[data-tab="register"]').click();
+                });
+            }
+        }
+        
+        // 初始化页面时更新用户界面
+        updateUserUI();
+        
+        // 登录表单提交
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 清除之前的错误信息
+            document.getElementById('login-username-error').style.display = 'none';
+            document.getElementById('login-password-error').style.display = 'none';
+            
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            
+            // 简单验证
+            if (!username) {
+                document.getElementById('login-username-error').textContent = '请输入用户名';
+                document.getElementById('login-username-error').style.display = 'block';
+                return;
+            }
+            
+            if (!password) {
+                document.getElementById('login-password-error').textContent = '请输入密码';
+                document.getElementById('login-password-error').style.display = 'block';
+                return;
+            }
+            
+            // 检查用户是否存在（模拟）
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (!user) {
+                document.getElementById('login-password-error').textContent = '用户名或密码错误';
+                document.getElementById('login-password-error').style.display = 'block';
+                return;
+            }
+            
+            // 登录成功
+            currentUser = {
+                username: user.username,
+                email: user.email,
+                realname: user.realname || user.username,
+                gender: user.gender || 'male',
+                birthdate: user.birthdate || '1990-01-01',
+                phone: user.phone || '13800000000',
+                school: user.school || '',
+                major: user.major || '',
+                political: user.political || 'league-member',
+                registerTime: user.registerTime || new Date().toISOString().split('T')[0]
+            };
+            
+            // 保存到本地存储
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // 更新用户界面
+            updateUserUI();
+            
+            // 关闭模态框
+            document.getElementById('login-modal').style.display = 'none';
+        });
+        
+        // 注册表单提交
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 清除之前的错误信息
+            document.getElementById('register-username-error').style.display = 'none';
+            document.getElementById('register-email-error').style.display = 'none';
+            document.getElementById('register-password-error').style.display = 'none';
+            document.getElementById('register-confirm-error').style.display = 'none';
+            
+            const username = document.getElementById('register-username').value.trim();
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value.trim();
+            const confirm = document.getElementById('register-confirm').value.trim();
+            
+            // 验证
+            let isValid = true;
+            
+            if (!username) {
+                document.getElementById('register-username-error').textContent = '请输入用户名';
+                document.getElementById('register-username-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!email) {
+                document.getElementById('register-email-error').textContent = '请输入电子邮箱';
+                document.getElementById('register-email-error').style.display = 'block';
+                isValid = false;
+            } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                document.getElementById('register-email-error').textContent = '请输入有效的电子邮箱';
+                document.getElementById('register-email-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!password) {
+                document.getElementById('register-password-error').textContent = '请输入密码';
+                document.getElementById('register-password-error').style.display = 'block';
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById('register-password-error').textContent = '密码长度至少6位';
+                document.getElementById('register-password-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!confirm) {
+                document.getElementById('register-confirm-error').textContent = '请确认密码';
+                document.getElementById('register-confirm-error').style.display = 'block';
+                isValid = false;
+            } else if (password !== confirm) {
+                document.getElementById('register-confirm-error').textContent = '两次输入的密码不一致';
+                document.getElementById('register-confirm-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // 检查用户名是否已存在
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(u => u.username === username)) {
+                document.getElementById('register-username-error').textContent = '用户名已存在';
+                document.getElementById('register-username-error').style.display = 'block';
+                return;
+            }
+            
+            // 保存新用户
+            const newUser = {
+                username: username,
+                email: email,
+                password: password,
+                registerTime: new Date().toISOString().split('T')[0]
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // 自动登录
+            currentUser = {
+                username: username,
+                email: email,
+                realname: username,
+                gender: 'male',
+                birthdate: '1990-01-01',
+                phone: '13800000000',
+                school: '',
+                major: '',
+                political: 'league-member',
+                registerTime: new Date().toISOString().split('T')[0]
+            };
+            
+            // 保存到本地存储
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // 更新用户界面
+            updateUserUI();
+            
+            // 关闭模态框
+            document.getElementById('login-modal').style.display = 'none';
+            
+            // 切换到登录标签
+            document.querySelector('.tab[data-tab="login"]').click();
+        });
+        
+        // 关闭模态框
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.getElementById('login-modal').style.display = 'none';
+            // 清除错误信息
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(e) {
+            if (e.target === document.getElementById('login-modal')) {
+                document.getElementById('login-modal').style.display = 'none';
+                // 清除错误信息
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+        });
+        
+        // 标签切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // 更新标签状态
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 更新内容显示
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === tabId + '-tab') {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // 清除错误信息
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+            });
+        });
+        
+        // 返回顶部按钮功能
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

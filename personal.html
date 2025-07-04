@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 思政案例分享平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #c00;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .slogan {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: #a00;
+            padding: 10px 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #800;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+        }
+        
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            margin-right: 20px;
+        }
+        
+        .user-profile {
+            text-align: center;
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .avatar-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .user-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .user-role {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* 右侧内容区 */
+        .main-content {
+            flex: 1;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        .page-title {
+            color: #c00;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        /* 个人信息卡片 */
+        .profile-card {
+            margin-bottom: 30px;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-title {
+            font-size: 1.5rem;
+            color: #333;
+        }
+        
+        .save-btn {
+            background-color: #c00;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .save-btn:hover {
+            background-color: #a00;
+        }
+        
+        .edit-btn {
+            background-color: #c00;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .edit-btn:hover {
+            background-color: #a00;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .info-item {
+            margin-bottom: 15px;
+        }
+        
+        .info-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1rem;
+            color: #333;
+            padding: 8px 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            width: 100%;
+        }
+        
+        .info-value.editable {
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        
+        .info-value.select {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 7px 10px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #aaa;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+        }
+        
+        /* 错误提示 */
+        .error-message {
+            color: #c00;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">思政案例分享平台</div>
+        <div class="slogan">弘扬主旋律 传播正能量</div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="youxiu.html">优秀党员事迹</a></li>
+            <li><a href="shehui.html">社会实践案例</a></li>
+            <li><a href="shipin.html">视频访谈</a></li>
+            <li><a href="xinde.html">心得体会</a></li>
+            <li><a href="#">关于我们</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="avatar" style="background-image: url('https://via.placeholder.com/100')">
+                    <div class="avatar-edit" title="更换头像">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <h3 class="user-name" id="display-username">加载中...</h3>
+                <p class="user-role">普通用户</p>
+            </div>
+        </aside>
+        
+        <!-- 右侧内容区 -->
+        <main class="main-content">
+            <h1 class="page-title">个人信息</h1>
+            
+            <!-- 个人信息卡片 -->
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h2 class="profile-title">基本资料</h2>
+                    <button class="edit-btn" id="editProfileBtn">编辑资料</button>
+                    <button class="save-btn" id="saveProfileBtn">保存修改</button>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">用户名</div>
+                        <input type="text" class="info-value editable" id="username" disabled>
+                        <div class="error-message" id="username-error"></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">真实姓名</div>
+                        <input type="text" class="info-value editable" id="realname" disabled>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">性别</div>
+                        <select class="info-value select" id="gender" disabled>
+                            <option value="male">男</option>
+                            <option value="female">女</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">出生日期</div>
+                        <input type="date" class="info-value editable" id="birthdate" disabled>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">电子邮箱</div>
+                        <input type="email" class="info-value editable" id="email" disabled>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">手机号码</div>
+                        <input type="tel" class="info-value editable" id="phone" disabled>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">所在院校</div>
+                        <input type="text" class="info-value editable" id="school" disabled>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">专业</div>
+                        <input type="text" class="info-value editable" id="major" disabled>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">政治面貌</div>
+                        <select class="info-value select" id="political" disabled>
+                            <option value="party-member">中共党员</option>
+                            <option value="probationary">预备党员</option>
+                            <option value="league-member">共青团员</option>
+                            <option value="mass">群众</option>
+                        </select>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">注册时间</div>
+                        <div class="info-value" id="register-time">加载中...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">关于我们</a>
+            <a href="#">联系方式</a>
+            <a href="#">投稿指南</a>
+            <a href="#">版权声明</a>
+            <a href="#">隐私政策</a>
+        </div>
+        <div class="copyright">
+            &copy; 2023 思政案例分享平台 版权所有
+        </div>
+    </footer>
+    
+    <script>
+        // 从本地存储获取用户数据
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        // DOM元素
+        const editBtn = document.getElementById('editProfileBtn');
+        const saveBtn = document.getElementById('saveProfileBtn');
+        const editableFields = document.querySelectorAll('.editable, .select');
+        const displayUsername = document.getElementById('display-username');
+        const registerTimeElement = document.getElementById('register-time');
+        
+        // 初始化页面
+        function initPage() {
+            if (currentUser) {
+                // 填充用户数据
+                document.getElementById('username').value = currentUser.username || '';
+                document.getElementById('realname').value = currentUser.realname || '';
+                document.getElementById('gender').value = currentUser.gender || 'male';
+                document.getElementById('birthdate').value = currentUser.birthdate || '';
+                document.getElementById('email').value = currentUser.email || '';
+                document.getElementById('phone').value = currentUser.phone || '';
+                document.getElementById('school').value = currentUser.school || '';
+                document.getElementById('major').value = currentUser.major || '';
+                document.getElementById('political').value = currentUser.political || 'league-member';
+                
+                // 显示注册时间（从用户数据中获取或使用当前时间）
+                const registerTime = currentUser.registerTime || getCurrentDate();
+                registerTimeElement.textContent = registerTime;
+                
+                // 如果用户数据中没有注册时间，则保存当前时间
+                if (!currentUser.registerTime) {
+                    currentUser.registerTime = registerTime;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+                
+                // 更新显示的用户名
+                displayUsername.textContent = currentUser.username;
+            } else {
+                // 用户未登录，跳转到首页
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // 获取当前日期（YYYY-MM-DD格式）
+        function getCurrentDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+        
+        // 编辑资料功能
+        editBtn.addEventListener('click', function() {
+            // 启用所有可编辑字段
+            editableFields.forEach(field => {
+                field.disabled = false;
+                field.classList.add('editable-active');
+            });
+            
+            // 切换按钮显示
+            editBtn.style.display = 'none';
+            saveBtn.style.display = 'inline-block';
+        });
+        
+        // 保存资料功能
+        saveBtn.addEventListener('click', function() {
+            // 验证用户名
+            const usernameInput = document.getElementById('username');
+            const username = usernameInput.value.trim();
+            
+            if (!username) {
+                document.getElementById('username-error').textContent = '用户名不能为空';
+                document.getElementById('username-error').style.display = 'block';
+                return;
+            }
+            
+            // 更新用户数据
+            currentUser.username = username;
+            currentUser.realname = document.getElementById('realname').value.trim();
+            currentUser.gender = document.getElementById('gender').value;
+            currentUser.birthdate = document.getElementById('birthdate').value;
+            currentUser.email = document.getElementById('email').value.trim();
+            currentUser.phone = document.getElementById('phone').value.trim();
+            currentUser.school = document.getElementById('school').value.trim();
+            currentUser.major = document.getElementById('major').value.trim();
+            currentUser.political = document.getElementById('political').value;
+            
+            // 保存到本地存储
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // 触发自定义事件通知其他页面
+            const event = new CustomEvent('userDataUpdated', { detail: currentUser });
+            window.dispatchEvent(event);
+            
+            // 更新显示的用户名
+            displayUsername.textContent = currentUser.username;
+            
+            // 禁用所有可编辑字段
+            editableFields.forEach(field => {
+                field.disabled = true;
+                field.classList.remove('editable-active');
+            });
+            
+            // 切换按钮显示
+            editBtn.style.display = 'inline-block';
+            saveBtn.style.display = 'none';
+            
+            // 隐藏错误信息
+            document.getElementById('username-error').style.display = 'none';
+            
+            alert('个人信息已保存！');
+        });
+        
+        // 头像上传功能
+        const avatarEdit = document.querySelector('.avatar-edit');
+        avatarEdit.addEventListener('click', function() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.querySelector('.avatar').style.backgroundImage = `url(${event.target.result})`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            fileInput.click();
+        });
+        
+        // 监听storage事件以实现跨标签页同步
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'currentUser') {
+                currentUser = JSON.parse(e.newValue);
+                initPage();
+            }
+        });
+        
+        // 监听自定义事件以实现同页面内的更新
+        window.addEventListener('userDataUpdated', function(e) {
+            currentUser = e.detail;
+            initPage();
+        });
+        
+        // 初始化页面
+        initPage();
+    </script>
+</body>
+</html>

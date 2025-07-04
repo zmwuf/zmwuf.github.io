@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例详情 - 思政案例分享平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        nav {
+            background-color: #a00;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: #800;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a, .user-actions span {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: rgba(255,255,255,0.2);
+            transition: background-color 0.3s;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .user-actions a:hover, .user-actions span:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 30px;
+            padding: 0 20px;
+        }
+        
+        .case-detail {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .case-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .case-header h1 {
+            color: #c00;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .case-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .case-image {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .case-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .case-content h2 {
+            color: #c00;
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+            border-left: 4px solid #c00;
+            padding-left: 10px;
+        }
+        
+        .case-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .case-footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #c00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #a00;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 0;
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #aaa;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .case-detail {
+                padding: 20px;
+            }
+            
+            .case-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="youxiu.html">优秀党员事迹</a></li>
+                <li><a href="shehui.html">社会实践案例</a></li>
+                <li><a href="shipin.html">视频访谈</a></li>
+                <li><a href="xinde.html">心得体会</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+            
+            <div class="user-actions">
+                <a href="#" id="login-btn">登录</a>
+                <a href="#" id="register-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <section class="case-detail" id="caseDetail">
+            <!-- 案例详情内容将通过JavaScript动态生成 -->
+        </section>
+    </div>
+    
+    <footer>
+        <div class="copyright">
+            <p>思政案例分享平台 &copy; 2025 由徐明月制作</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 获取URL中的案例ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const caseId = urlParams.get('id');
+        
+        // 案例数据（应与列表页中的数据一致）
+        const caseData = [
+            {
+                id: 1,
+                title: '"王海滨团队"别怕擦伤"生命教育',
+                type: 'volunteer',
+                date: '2023-07-15',
+                description: '联合轮椅舞者潘静、盲人马寅青等残障人士，走进上海闵行区中小学,通过展示伤疤、轮椅乒乓赛、蒙眼行走等体验活动，引导青少年直面挫折...',
+                image: 'img/photo16.jpg',
+                content: '详细内容：王海滨团队通过创新的生命教育方式，让青少年直接与残障人士互动，体验不同的生活状态。活动中，残障人士展示自己的伤疤，讲述背后的故事；学生们参与轮椅乒乓赛，体验行动不便的感受；蒙眼行走活动让学生们理解视觉障碍者的日常生活。这些活动有效促进了青少年对生命的尊重和理解。'
+            },
+			{
+			    id: 2,
+			    title: '滁州"五社联动"帮扶困境儿童',
+			    type: 'volunteer',
+			    date: '2023-06-02',
+			    description: '安徽滁州万桥社区发现母亲患癌去世后，11岁男孩小杰陷入失语状态,社工每周上门陪伴，以折千纸鹤疏导思念...',
+			    image: 'img/photo17.jpg',
+			    content: '详细内容：滁州万桥社区采用"社区、社会组织、社会工作者、社区志愿者、社会慈善资源"五社联动模式，为困境儿童提供全方位帮扶。针对小杰的情况，社工制定了为期三个月的心理疏导计划，通过折千纸鹤、绘画等非语言方式帮助他表达情感。同时，链接慈善资源为其提供生活补助，组织志愿者定期辅导功课。三个月后，小杰逐渐恢复语言能力，重返校园。'
+			},
+			{
+			    id: 3,
+			    title: '合肥学子对话"50年党龄老兵',
+			    type: 'red-education',
+			    date: '2023-05-20',
+			    description: '合肥职业技术学院学生赴肥光社区，寻访三位平均党龄40年的老党员,聆听张惠民握毛主席手的记忆、王玉明抗洪抢险...',
+			    image: 'img/photo18.jpg',
+			    content: '详细内容：合肥职业技术学院组织20名学生党员开展"寻访红色记忆"实践活动。学生们采访了张惠民(党龄52年)、王玉明(党龄48年)、李建国(党龄41年)三位老党员。张惠民老人分享了1966年作为劳模代表与毛主席握手的珍贵记忆；王玉明老人讲述了1991年安徽特大洪灾中带领党员突击队抢险的感人事迹；李建国老人回忆了改革开放初期基层工作的艰辛与成就。这些鲜活的历史让年轻党员深受教育。'
+			},
+			{
+			    id: 4,
+			    title: '江西学子探访老兵尹冬根',
+			    type: 'red-education',
+			    date: '2022-04-15',
+			    description: '江西软件职业技术大学实践队在清湖村拜访党龄50年的退伍军人,触摸"在党50年"纪念章，记录...',
+			    image: 'img/photo19.jpg',
+			    content: '详细内容：江西软件职业技术大学"红色记忆"实践队深入吉安市清湖村，采访了退伍军人尹冬根(党龄51年)。尹老展示了"光荣在党50年"纪念章，讲述了1979年参加对越自卫反击战的经历，特别是战友舍身掩护的感人故事。学生们还整理了尹老珍藏的军功章、老照片等实物资料，制作成数字化档案。活动结束后，团队在校内举办了"老兵的红色记忆"专题展览。'
+			},
+			{
+			    id: 5,
+			    title: '江西学子"田间直播"赋能清湖大米',
+			    type: 'rural-revitalization',
+			    date: '2023-03-10',
+			    description: '江西软件职业技术大学8名学生赴吉安清湖村，助力860亩水稻产业,参与插秧施肥，体悟"粒粒皆辛苦"...',
+			    image: 'img/photo20.jpeg',
+			    content: '详细内容：江西软件职业技术大学电子商务专业8名学生开展"直播助农"实践活动。团队驻扎清湖村两周，全程参与水稻种植(插秧、施肥、除草)，深入了解农业生产过程。同时，利用专业优势开展抖音直播带货，创新设计了"稻田里的直播间"，主播边劳动边讲解，直观展示清湖大米的种植环境和技术。活动期间累计直播20场，销售额达15万元，并帮助村民建立了长期电商销售渠道。'
+			},
+			{
+			    id: 6,
+			    title: '山东大学"赤泥路用"技术兴农',
+			    type: 'rural-revitalization',
+			    date: '2023-02-28',
+			    description: '学生调研八省十五村后，发现工业废料赤泥可用于乡村道路建设,研发赤泥基环保材料，降低道路成本30%...',
+			    image: 'img/photo21.jpg',
+			    content: '详细内容：山东大学材料科学与工程学院团队历时8个月，走访山东、河南等8省份15个村庄，调研乡村道路建设难题。针对传统筑路材料成本高、工业废料赤泥污染环境的问题，团队研发了赤泥基道路材料，通过添加特定固化剂使赤泥达到筑路标准。该技术已在临沂市两个试点村应用，道路建设成本降低30%，强度提高20%，同时解决了铝厂赤泥堆积的环保难题。项目获"挑战杯"全国大学生创业计划竞赛金奖。'
+			},
+			{
+			    id: 7,
+			    title: '中南大学"村规民约"治理调研',
+			    type: 'rural-revitalization',
+			    date: '2022-11-15',
+			    description: '法学院团队深入湖南芷江、望城6村，探索基层善治模式,记录桐木村三字经版村规（"孝...',
+			    image: 'img/photo22.webp',
+			    content: '详细内容：中南大学法学院"乡村治理"调研团走访湖南6个村庄，重点研究村规民约在基层治理中的作用。团队发现桐木村创新采用"三字经"形式制定村规("孝父母，敬长辈；睦邻里，和兄弟...")，朗朗上口易于传播；望城某村建立"积分制"将村规量化管理，与福利分配挂钩。团队撰写的《乡村振兴背景下村规民约创新路径研究》获湖南省大学生课外学术科技作品竞赛特等奖。'
+			},
+			{
+			    id: 8,
+			    title: '中南大学"田野普法"行动',
+			    type: 'volunteer',
+			    date: '2022-10-08',
+			    description: '在芷江四中以"邯郸初中生案"解析校园暴力法律责任,望城小学用《那年那兔那些事》动画串联雷锋故...',
+			    image: 'img/photo23.png',
+			    content: '详细内容：中南大学法学院志愿者开展"法律进校园"活动。在芷江四中，通过"邯郸初中生案"等真实案例，以模拟法庭形式解析校园暴力涉及的法律责任；在望城雷锋小学，结合《那年那兔那些事》爱国主义动画，设计"法律知识闯关游戏"，将法治教育与红色教育融合。活动覆盖6所学校2000余名学生，发放自制普法漫画手册3000余份。项目获评全国大学生暑期社会实践优秀团队。'
+			},
+			{
+			    id: 9,
+			    title: '前溪村"一老一小"幸福中心',
+			    type: 'volunteer',
+			    date: '2022-08-20',
+			    description: '乡贤赞助举办"花灯闹元宵"，80岁以上老人共聚团圆宴,带留守儿童参观科技馆、新四军旧址，开展"七彩课...',
+			    image: 'img/photo24.jpg',
+			    content: '详细内容：浙江前溪村乡贤捐资建设"幸福中心"，创新"老幼共融"服务模式。针对老人：每月集体生日会、健康义诊、元宵团圆宴；针对儿童：周末课业辅导、暑期"七彩课堂"、科技馆参观；老幼互动活动：老人教传统手工艺(如花灯制作)、儿童为老人表演节目等。中心运行一年来，服务老人120余名、儿童60余名，显著改善了留守群体的生活质量。该模式已在周边5个村推广。'
+			},
+			{
+			    id: 10,
+			    title: '海口桂林社区货车司机"急难愁盼"调研',
+			    type: 'research',
+			    date: '2021-12-05',
+			    description: '社区内南北水果市场、蔬菜市场日均往来货车司机180人次，60%需过夜停留，普遍面临"吃饭难、洗澡难、洗衣难"问题。琼山...',
+			    image: 'img/photo25.jpg',
+			    content: '详细内容：海南大学团队对海口桂林社区货车司机群体开展为期3个月的调研。通过问卷调查(回收有效问卷326份)、深度访谈(32人)、跟踪观察等方法，发现三大痛点：1)基本生活服务缺乏；2)停车休息安全隐患多；3)社会保障缺失。团队提出"司机之家"建设方案，并推动社区将闲置办公楼改造为24小时服务站，提供餐饮、淋浴、洗衣等便民服务。调研报告获海南省社会治理创新大赛一等奖。'
+			},
+			{
+			    id: 11,
+			    title: '四川大学生"一老一小"社区共融生态调研',
+			    type: 'research',
+			    date: '2021-09-18',
+			    description: '四川大学社保专业团队聚焦成都市锦城社区4万居民，探究老龄化与育儿压力下，如何构建老幼互...',
+			    image: 'img/photo26.webp',
+			    content: '详细内容：四川大学团队对锦城社区"老幼共融"模式进行系统研究。通过分析社区3年服务数据发现：1)老人参与托幼服务可降低抑郁量表得分26%；2)隔代互动活动使儿童社交能力提升显著；3)"时间银行"机制有效激励低龄老人参与服务。团队设计的"老幼代际学习中心"方案被纳入成都市"全龄友好社区"建设标准，相关论文发表于《社会保障研究》。'
+			},
+			{
+			    id: 12,
+			    title: '浙闽学子非遗盐场技艺保护调研',
+			    type: 'research',
+			    date: '2021-07-30',
+			    description: '浙江万里学院团队赴宁波象山县花岙岛，调研千年古法晒盐技艺（国家级非遗）的传承困境。当地盐...',
+			    image: 'img/photo27.png',
+			    content: '详细内容：浙江万里学院与福建师范大学联合团队对花岙盐场非遗传承开展跨学科调研。研究发现：1)现存盐工平均年龄58岁，后继乏人；2)传统工艺效率低，经济效益差；3)文旅融合缺乏专业规划。团队提出"生产性保护"方案：开发文创产品提升附加值，设计研学旅游线路，建立"校企社"协同培养机制。促成当地成立盐文化研究会，相关建议被象山县文旅局采纳实施。'
+			}
+        ];
+        
+        // 查找对应的案例
+        const caseItem = caseData.find(item => item.id == caseId);
+        
+        // 渲染案例详情
+        function renderCaseDetail() {
+            const caseDetail = document.getElementById('caseDetail');
+            
+            if (!caseItem) {
+                caseDetail.innerHTML = '<div class="no-results">未找到指定的案例</div>';
+                return;
+            }
+            
+            const typeText = getTypeText(caseItem.type);
+            
+            caseDetail.innerHTML = `
+                <div class="case-header">
+                    <h1>${caseItem.title}</h1>
+                    <div class="case-meta">
+                        <span>${typeText}</span>
+                        <span>${caseItem.date}</span>
+                    </div>
+                </div>
+                
+                <div class="case-image">
+                    <img src="${caseItem.image}" alt="${caseItem.title}">
+                </div>
+                
+                <div class="case-content">
+                    <h2>案例简介</h2>
+                    <p>${caseItem.description}</p>
+                    
+                    <h2>详细内容</h2>
+                    <p>${caseItem.content}</p>
+                    
+                    <div class="case-footer">
+                        <a href="shehui.html" class="btn">返回列表</a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 获取类型文本
+        function getTypeText(type) {
+            const types = {
+                'volunteer': '志愿服务',
+                'research': '社会调研',
+                'red-education': '红色教育',
+                'rural-revitalization': '乡村振兴'
+            };
+            return types[type] || type;
+        }
+        
+        // 初始化页面
+        renderCaseDetail();
+    </script>
+</body>
+</html>

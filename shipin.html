@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频访谈 - 思政案例分享平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        nav {
+            background-color: #a00;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            font-weight: bold;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-actions a, .user-actions span {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .user-actions a:hover, .user-actions span:hover {
+            background-color: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 英雄区域 */
+        .hero-section {
+            height: 500px;
+            background: linear-gradient(135deg, #a00 0%, #d00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            padding: 0 20px;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-content h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: white;
+            border-radius: 2px;
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .stat-number::after {
+            content: '+';
+            position: absolute;
+            right: -15px;
+            top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 1;
+        }
+        
+        .hero-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            z-index: 1;
+        }
+        
+        .shape-1 {
+            top: -100px;
+            right: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        /* 新添加的视频选项卡样式 */
+        .video-tab-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .video-tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .video-tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .video-tab:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .video-tab.active {
+            border-bottom: 3px solid #a00;
+            background-color: #f9f9f9;
+            color: #a00;
+            font-weight: bold;
+        }
+        
+        .video-tab-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #a00;
+        }
+        
+        .video-tab-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .video-tab-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .video-content-container {
+            margin-top: 20px;
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .video-content {
+            display: none;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .video-content.active {
+            display: block;
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 450px;
+            background-color: #222;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .video-player-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .video-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .video-info p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .video-meta {
+            display: flex;
+            gap: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .video-meta i {
+            margin-right: 5px;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .video-tabs {
+                flex-direction: column;
+            }
+            
+            .video-tab {
+                padding: 15px;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .video-tab-icon {
+                margin-bottom: 0;
+                font-size: 1.5rem;
+            }
+            
+            .video-tab-content {
+                text-align: left;
+            }
+            
+            .video-tab.active {
+                border-bottom: none;
+                border-left: 3px solid #a00;
+            }
+            
+            .video-player {
+                height: 300px;
+            }
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 登录注册模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .modal h3 {
+            color: #a00;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .form-actions {
+            text-align: center;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab.active {
+            border-bottom: 2px solid #a00;
+            color: #a00;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .error-message {
+            color: #a00;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .user-menu {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .user-dropdown a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .user-dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .user-menu:hover .user-dropdown {
+            display: block;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #a00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #800;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="youxiu.html">优秀党员事迹</a></li>
+                <li><a href="shehui.html">社会实践案例</a></li>
+                <li><a href="#" class="active">视频访谈</a></li>
+                <li><a href="xinde.html">心得体会</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+            
+            <div class="user-actions" id="userActions">
+                <a href="#" id="login-btn">登录</a>
+                <a href="#" id="register-btn">注册</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="hero-shape shape-1"></div>
+        <div class="hero-shape shape-2"></div>
+        <div class="hero-content">
+            <h1>思政教育视频访谈</h1>
+            <p>通过生动的视频形式，记录和传播优秀党员事迹、社会实践案例和思政教育成果，让思想教育更加形象直观</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="video-count">500</div>
+                    <div class="stat-label">精选视频</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="user-count">10</div>
+                    <div class="stat-label">万+用户</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="play-count">100</div>
+                    <div class="stat-label">万+播放</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 视频选项卡区域 -->
+    <div class="video-tab-container">
+        <div class="video-tabs">
+            <div class="video-tab active" data-tab="interview">
+                <div class="video-tab-icon">
+                    <i class="fas fa-microphone-alt"></i>
+                </div>
+                <div class="video-tab-content">
+                    <div class="video-tab-title">党员访谈</div>
+                    <div class="video-tab-desc">聆听优秀党员的先进事迹和思想感悟</div>
+                </div>
+            </div>
+            <div class="video-tab" data-tab="practice">
+                <div class="video-tab-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="video-tab-content">
+                    <div class="video-tab-title">实践案例</div>
+                    <div class="video-tab-desc">记录社会实践活动的精彩瞬间和成果</div>
+                </div>
+            </div>
+            <div class="video-tab" data-tab="lecture">
+                <div class="video-tab-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="video-tab-content">
+                    <div class="video-tab-title">思政讲座</div>
+                    <div class="video-tab-desc">学习权威专家的思政教育理论和实践</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-content-container">
+            <div class="video-content active" id="interview-content">
+                <div class="video-player">
+                   <div class="video-player">
+                       <video controls width="100%" height="100%">
+                           <source src="img/video1.mp4" type="video/mp4">
+
+                       </video>
+                   </div>
+                </div>
+                <div class="video-info">
+                    <h3>【百年·心声】国科大党员访谈录1：老党员专访，最长党龄82年！</h3>
+                    <p>本视频记录了一位老党员的入党经历与心路历程。他从小在战乱中长大,
+深刻体会到共产党的好,决心终身为共产主义事业奋斗。他
+在军队中努力工作,积极入党,认为党员应该多做贡献,为
+国家和人民服务。他祝愿中国共产党永远年轻,带领中国人
+民走向更辉煌的未来。</p>
+                    <div class="video-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2021-07-06</span>
+                        <span><i class="far fa-eye"></i> 2724次观看</span>
+                        <span><i class="far fa-clock"></i> 05:36</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-content" id="practice-content">
+                <div class="video-player">
+                    <video controls width="100%" height="100%">
+                        <source src="img/video2.mp4" type="video/mp4">
+                        您的浏览器不支持HTML5视频标签。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>【三下乡】西南财经大学2023年暑期三下乡社会实践活动 乡村振兴大调研 | 彩云之南实践队</h3>
+                    <p>西南财经大学2023年暑期“三下乡”实践队赴云南昆明双龙
+街道调研乡村振兴,聚焦生态与产业融合,通过走访政府、
+多肉农场及农贸市场,深入了解当地依托健康产业、乡村旅
+游和多肉种植推动产业升级,展现基层组织引领、村民参与
+及政策支持下的生态宜居与经济发展成果,体现青年学子助
+力乡村振兴的实践行动。</p>
+                    <div class="video-meta">
+                        <span><i class="far fa-calendar-alt"></i> 2023-07-31</span>
+                        <span><i class="far fa-eye"></i> 1.3万次观看</span>
+                        <span><i class="far fa-clock"></i> 06:44</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-content" id="lecture-content">
+                <div class="video-player">
+                    <video controls width="100%" height="100%">
+                        <source src="img/video3.mp4" type="video/mp4">
+                        您的浏览器不支持HTML5视频标签。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>新思想引领新征程丨牢记嘱托 不断开创新时代思政教育新局面</h3>
+                    <p>本视频理论高度和实践角度，深入浅出地讲解了思政教育创新的必要性和路径选择，为思政工作者提供了宝贵的经验和启示。</p>
+                    <div class="video-meta">
+                        <span><i class="far fa-calendar-alt"></i>2024-05-13</span>
+                        <span><i class="far fa-eye"></i> 1924次观看</span>
+                        <span><i class="far fa-clock"></i> 06:15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>思政案例分享平台 &copy; 2025 由徐明月制作</p>
+            <p class="copyright">致力于传播优秀思政教育案例，弘扬社会主义核心价值观</p>
+        </div>
+    </footer>
+
+    <!-- 登录模态框 -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="tab-container">
+                <div class="tab active" data-tab="login">登录</div>
+                <div class="tab" data-tab="register">注册</div>
+            </div>
+            
+            <div class="tab-content active" id="login-tab">
+                <h3>用户登录</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">用户名</label>
+                        <input type="text" id="login-username" required>
+                        <div class="error-message" id="login-username-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">密码</label>
+                        <input type="password" id="login-password" required>
+                        <div class="error-message" id="login-password-error"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">登录</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="register-tab">
+                <h3>用户注册</h3>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">用户名</label>
+                        <input type="text" id="register-username" required>
+                        <div class="error-message" id="register-username-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">电子邮箱</label>
+                        <input type="email" id="register-email" required>
+                        <div class="error-message" id="register-email-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">密码</label>
+                        <input type="password" id="register-password" required>
+                        <div class="error-message" id="register-password-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">确认密码</label>
+                        <input type="password" id="register-confirm" required>
+                        <div class="error-message" id="register-confirm-error"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">注册</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 选项卡切换功能
+        document.querySelectorAll('.video-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // 更新标签状态
+                document.querySelectorAll('.video-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 更新内容显示
+                document.querySelectorAll('.video-content').forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === tabId + '-content') {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // 数字动画效果
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // 页面加载后执行数字动画
+        window.addEventListener('load', function() {
+            animateValue('video-count', 0, 500, 2000);
+            animateValue('user-count', 0, 10, 2000);
+            animateValue('play-count', 0, 100, 2000);
+        });
+
+        // 登录注册功能
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const loginModal = document.getElementById('login-modal');
+        const closeBtn = document.querySelector('.close-btn');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const userActions = document.getElementById('userActions');
+        
+        // 从本地存储获取用户登录状态
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        // 初始化页面时更新用户界面
+        updateUserUI();
+        
+        // 显示登录模态框
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.style.display = 'flex';
+                // 默认显示登录标签
+                document.querySelector('.tab[data-tab="login"]').click();
+            });
+        }
+        
+        // 显示注册模态框
+        if (registerBtn) {
+            registerBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.style.display = 'flex';
+                // 显示注册标签
+                document.querySelector('.tab[data-tab="register"]').click();
+            });
+        }
+        
+        // 关闭模态框
+        closeBtn.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            // 清除错误信息
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+                // 清除错误信息
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+        });
+        
+        // 标签切换
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // 更新标签状态
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 更新内容显示
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === tabId + '-tab') {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // 清除错误信息
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+            });
+        });
+        
+        // 登录表单提交
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 清除之前的错误信息
+            document.getElementById('login-username-error').style.display = 'none';
+            document.getElementById('login-password-error').style.display = 'none';
+            
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            
+            // 简单验证
+            if (!username) {
+                document.getElementById('login-username-error').textContent = '请输入用户名';
+                document.getElementById('login-username-error').style.display = 'block';
+                return;
+            }
+            
+            if (!password) {
+                document.getElementById('login-password-error').textContent = '请输入密码';
+                document.getElementById('login-password-error').style.display = 'block';
+                return;
+            }
+            
+            // 检查用户是否存在（模拟）
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (!user) {
+                document.getElementById('login-password-error').textContent = '用户名或密码错误';
+                document.getElementById('login-password-error').style.display = 'block';
+                return;
+            }
+            
+            // 登录成功
+            currentUser = {
+                username: user.username,
+                email: user.email,
+                realname: user.realname || user.username,
+                gender: user.gender || 'male',
+                birthdate: user.birthdate || '1990-01-01',
+                phone: user.phone || '13800000000',
+                school: user.school || '',
+                major: user.major || '',
+                political: user.political || 'league-member',
+                registerTime: user.registerTime || new Date().toISOString().split('T')[0]
+            };
+            
+            // 保存到本地存储
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // 更新用户界面
+            updateUserUI();
+            
+            // 触发自定义事件通知其他页面
+            const event = new CustomEvent('userDataUpdated', { detail: currentUser });
+            window.dispatchEvent(event);
+            
+            // 关闭模态框
+            loginModal.style.display = 'none';
+        });
+        
+        // 注册表单提交
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 清除之前的错误信息
+            document.getElementById('register-username-error').style.display = 'none';
+            document.getElementById('register-email-error').style.display = 'none';
+            document.getElementById('register-password-error').style.display = 'none';
+            document.getElementById('register-confirm-error').style.display = 'none';
+            
+            const username = document.getElementById('register-username').value.trim();
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value.trim();
+            const confirm = document.getElementById('register-confirm').value.trim();
+            
+            // 验证
+            let isValid = true;
+            
+            if (!username) {
+                document.getElementById('register-username-error').textContent = '请输入用户名';
+                document.getElementById('register-username-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!email) {
+                document.getElementById('register-email-error').textContent = '请输入电子邮箱';
+                document.getElementById('register-email-error').style.display = 'block';
+                isValid = false;
+            } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                document.getElementById('register-email-error').textContent = '请输入有效的电子邮箱';
+                document.getElementById('register-email-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!password) {
+                document.getElementById('register-password-error').textContent = '请输入密码';
+                document.getElementById('register-password-error').style.display = 'block';
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById('register-password-error').textContent = '密码长度至少6位';
+                document.getElementById('register-password-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!confirm) {
+                document.getElementById('register-confirm-error').textContent = '请确认密码';
+                document.getElementById('register-confirm-error').style.display = 'block';
+                isValid = false;
+            } else if (password !== confirm) {
+                document.getElementById('register-confirm-error').textContent = '两次输入的密码不一致';
+                document.getElementById('register-confirm-error').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // 检查用户名是否已存在
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.some(u => u.username === username)) {
+                document.getElementById('register-username-error').textContent = '用户名已存在';
+                document.getElementById('register-username-error').style.display = 'block';
+                return;
+            }
+            
+            // 保存新用户
+            const newUser = {
+                username: username,
+                email: email,
+                password: password,
+                registerTime: new Date().toISOString().split('T')[0]
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // 自动登录
+            currentUser = {
+                username: username,
+                email: email,
+                realname: username,
+                gender: 'male',
+                birthdate: '1990-01-01',
+                phone: '13800000000',
+                school: '',
+                major: '',
+                political: 'league-member',
+                registerTime: new Date().toISOString().split('T')[0]
+            };
+            
+            // 保存到本地存储
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // 更新用户界面
+            updateUserUI();
+            
+            // 触发自定义事件通知其他页面
+            const event = new CustomEvent('userDataUpdated', { detail: currentUser });
+            window.dispatchEvent(event);
+            
+            // 关闭模态框
+            loginModal.style.display = 'none';
+            
+            // 切换到登录标签
+            document.querySelector('.tab[data-tab="login"]').click();
+        });
+        
+        // 更新用户界面
+        function updateUserUI() {
+            if (currentUser) {
+                userActions.innerHTML = `
+                    <div class="user-menu">
+                        <span id="username-display">${currentUser.username}</span>
+                        <div class="user-dropdown">
+                            <a href="personal.html">个人中心</a>
+                            <a href="#">我的收藏</a>
+                            <a href="#">我的投稿</a>
+                            <a href="#" id="logout-btn">退出登录</a>
+                        </div>
+                    </div>
+                `;
+                
+                // 添加退出登录事件
+                document.getElementById('logout-btn').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    updateUserUI();
+                    
+                    // 触发自定义事件通知其他页面
+                    const event = new CustomEvent('userDataUpdated', { detail: null });
+                    window.dispatchEvent(event);
+                });
+            } else {
+                userActions.innerHTML = `
+                    <a href="#" id="login-btn">登录</a>
+                    <a href="#" id="register-btn">注册</a>
+                `;
+                
+                // 重新绑定事件
+                if (document.getElementById('login-btn')) {
+                    document.getElementById('login-btn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        loginModal.style.display = 'flex';
+                        document.querySelector('.tab[data-tab="login"]').click();
+                    });
+                }
+                
+                if (document.getElementById('register-btn')) {
+                    document.getElementById('register-btn').addEventListener('click', function(e) {
+                        e.preventDefault();
+                        loginModal.style.display = 'flex';
+                        document.querySelector('.tab[data-tab="register"]').click();
+                    });
+                }
+            }
+        }
+        
+        // 监听storage事件以实现跨标签页同步
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'currentUser') {
+                currentUser = JSON.parse(e.newValue);
+                updateUserUI();
+            }
+        });
+        
+        // 监听自定义事件以实现同页面内的更新
+        window.addEventListener('userDataUpdated', function(e) {
+            currentUser = e.detail;
+            updateUserUI();
+        });
+    </script>
+</body>
+</html>
